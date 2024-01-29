@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    build:
+      args:
+        - CURATION_APP_PATH=${CURATION_APP_PATH}
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    ports:
+      - '3000:3000'
+      - '3001:3001'
+    volumes:
+      - './workspace:${CURATION_APP_PATH}'
+      - './.env:${CURATION_APP_PATH}/.env'
+    environment:
+      - TZ=${SERVER_TIMEZONE}
+    command: sh -c "npm i && npm run dev"
+  meilisearch:
+    image: getmeili/meilisearch:latest
+    volumes:
+      - './data:/data.ms'
