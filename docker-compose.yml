@@ -15,8 +15,14 @@ services:
       - './.env:${CURATION_APP_PATH}/.env'
     environment:
       - TZ=${SERVER_TIMEZONE}
-    command: sh -c "npm i && npm run dev"
   meilisearch:
     image: getmeili/meilisearch:latest
+    ports:
+      - '7700:7700'
     volumes:
-      - './data:/data.ms'
+      - './data:${MEILI_DB_PATH}'
+    environment:
+      - TZ=${SERVER_TIMEZONE}
+      - MEILI_HTTP_ADDR
+      - MEILI_MASTER_KEY
+      - MEILI_DB_PATH
