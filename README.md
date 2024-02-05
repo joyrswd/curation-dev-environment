@@ -24,7 +24,7 @@
     ```
     docker-compose exec app bash
     ```
-8. https://github.com/joyrswd/curation のインストール手順5以降を実施する  
+8. https://github.com/joyrswd/curation のインストール手順4以降を実施する  
 
 以上
 
